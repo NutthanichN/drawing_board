@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
+
+import com.sun.org.apache.bcel.internal.generic.GotoInstruction;
 import objects.*;
 
 public class DrawingBoard extends JPanel {
@@ -24,12 +26,8 @@ public class DrawingBoard extends JPanel {
 	}
 	
 	public void addGObject(GObject gObject) {
-		// TODO: Implement this method.
 		gObjects.add(gObject);
 		repaint();
-//		for(GObject go: gObjects) {
-//			System.out.println(go);
-//		}
 	}
 	
 	public void groupAll() {
@@ -39,11 +37,13 @@ public class DrawingBoard extends JPanel {
 	}
 
 	public void deleteSelected() {
-		// TODO: Implement this method.
+		gObjects.remove(target);
+		repaint();
 	}
 	
 	public void clear() {
-		// TODO: Implement this method.
+		gObjects = new ArrayList<GObject>();
+		repaint();
 	}
 	
 	@Override
@@ -84,7 +84,9 @@ public class DrawingBoard extends JPanel {
 		int y;
 		
 		private void deselectAll() {
-			// TODO: Implement this method.
+			for(GObject go: gObjects) {
+				go.deselected();
+			}
 		}
 		
 		@Override
@@ -92,26 +94,29 @@ public class DrawingBoard extends JPanel {
 //			System.out.println(e.getX() + " " + e.getY());
 			this.x = e.getX();
 			this.y = e.getY();
+			deselectAll();
 			for(GObject go: gObjects) {
 				if(go.pointerHit(x, y)) {
-					System.out.println(1);
-					go.selected();
-					repaint();
+					target = go;
 				}
 			}
+			target.selected();
+			repaint();
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			// TODO: Implement this method.
+			// TODO: Fix bug.
 			System.out.println(x + " " + y);
 			int dX = e.getX();
 			int dY = e.getY();
+//			System.out.println(e.getX()+ " " + e.getY());
 			System.out.println("dX: " + dX + " dY: " + dY);
-			for(GObject go: gObjects) {
-				go.move(dX, dY);
-				repaint();
-			}
+			target.move(dX, dY);
+//			for(GObject go: gObjects) {
+//				go.move(dX, dY);
+//			}
+			repaint();
 		}
 	}
 	

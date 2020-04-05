@@ -45,9 +45,13 @@ public abstract class GObject {
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
 		// change obj position using dx, dy
+		// dX = destination X?
+		int deltaX = dX - x;
+		int deltaY = dY - y;
+		System.out.println(deltaX + " " + deltaY);
 		if(selected) {
-			this.x += dX;
-			this.y += dY;
+			this.x += deltaX;
+			this.y += deltaY;
 		}
 
 	}
