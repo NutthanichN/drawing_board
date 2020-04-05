@@ -110,6 +110,7 @@ public class Window extends JFrame {
 		int w = Integer.parseInt(fieldWidth.getText());
 		int h = Integer.parseInt(fieldHeight.getText());
 		/* A good starting point */
+		System.out.println("Add Oval");
 		drawPanel.addGObject(new Oval(x, y, w, h, randomColor()));
 	}
 

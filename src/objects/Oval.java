@@ -15,11 +15,18 @@ public class Oval extends GObject {
 	@Override
 	public void paintObject(Graphics g) {
 		// TODO: Implement this method.
+		System.out.println("Paint Object Oval");
+		g.setColor(color);
+		g.drawOval(x, y, width, height);
 	}
 	
 	@Override
 	public void paintLabel(Graphics g) {
 		// TODO: Implement this method.
+		int left = x - (width / 2);
+		int bottom = y - (height / 2);
+//		g.setColor(Color.black);
+		g.drawString("Oval", left, bottom);
 	}
 	
 }

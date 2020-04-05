@@ -25,6 +25,7 @@ public class DrawingBoard extends JPanel {
 	
 	public void addGObject(GObject gObject) {
 		// TODO: Implement this method.
+		gObjects.add(gObject);
 	}
 	
 	public void groupAll() {
@@ -46,6 +47,7 @@ public class DrawingBoard extends JPanel {
 		super.paint(g);
 		paintBackground(g);
 		paintGrids(g);
+		System.out.println("Paint Objects");
 		paintObjects(g);
 	}
 
@@ -75,6 +77,8 @@ public class DrawingBoard extends JPanel {
 	class MAdapter extends MouseAdapter {
 
 		// TODO: You need some variables here
+		int x = getX();
+		int y = getY();
 		
 		private void deselectAll() {
 			// TODO: Implement this method.
@@ -83,11 +87,23 @@ public class DrawingBoard extends JPanel {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO: Implement this method.
+//			for(GObject go: gObjects) {
+//				if(go.pointerHit(e.getX(), e.getY())) {
+//					go.selected();
+//					System.out.println(e.getX() + " " + e.getY());
+//				}
+//			}
+			System.out.println(e.getX() + " " + e.getY());
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			// TODO: Implement this method.
+			int dX = x - e.getX();
+			int dY = y - e.getY();
+//			for(GObject go: gObjects) {
+//				if(go.selected() == true)
+//			}
 		}
 	}
 	
