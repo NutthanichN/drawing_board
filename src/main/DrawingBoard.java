@@ -26,6 +26,10 @@ public class DrawingBoard extends JPanel {
 	public void addGObject(GObject gObject) {
 		// TODO: Implement this method.
 		gObjects.add(gObject);
+		repaint();
+//		for(GObject go: gObjects) {
+//			System.out.println(go);
+//		}
 	}
 	
 	public void groupAll() {
@@ -47,7 +51,6 @@ public class DrawingBoard extends JPanel {
 		super.paint(g);
 		paintBackground(g);
 		paintGrids(g);
-		System.out.println("Paint Objects");
 		paintObjects(g);
 	}
 
@@ -69,8 +72,12 @@ public class DrawingBoard extends JPanel {
 	}
 
 	private void paintObjects(Graphics g) {
+//		System.out.println("Paint tryyyy");
 		for (GObject go : gObjects) {
+//			System.out.println("Obj");
+//			System.out.println(go);
 			go.paint(g);
+//			go.paintObject(g);
 		}
 	}
 

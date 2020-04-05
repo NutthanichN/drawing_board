@@ -12,18 +12,24 @@ public class Oval extends GObject {
 		this.color = color;
 	}
 
+	public void paintOval(Graphics g) {
+		System.out.println(1);
+		g.setColor(color);
+		g.fillOval(x, y, width, height);
+	}
+
 	@Override
 	public void paintObject(Graphics g) {
 		// TODO: Implement this method.
-		System.out.println("Paint Object Oval");
+//		System.out.println("Paint Object Oval");
 		g.setColor(color);
-		g.drawOval(x, y, width, height);
+		g.fillOval(x, y, width, height);
 	}
 	
 	@Override
 	public void paintLabel(Graphics g) {
 		// TODO: Implement this method.
-		int left = x - (width / 2);
+		int left = x - width;
 		int bottom = y - (height / 2);
 //		g.setColor(Color.black);
 		g.drawString("Oval", left, bottom);
