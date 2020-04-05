@@ -14,18 +14,14 @@ public class Rect extends GObject  {
 
 	@Override
 	public void paintObject(Graphics g) {
-		// TODO: Implement this method.
 		g.setColor(color);
 		g.fillRect(x, y, width, height);
 	}
 	
 	@Override
 	public void paintLabel(Graphics g) {
-		// TODO: Implement this method.
-		int left = x - (width / 2);
-		int bottom = y - (height / 2);
-//		g.setColor(Color.black);
-		g.drawString("Rec", left, bottom);
+		int left = x - (width / 2) + 25;
+		int bottom = y + height + 20;
+		g.drawString("Rect", left, bottom);
 	}
-	
 }
