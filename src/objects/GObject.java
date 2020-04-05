@@ -23,14 +23,15 @@ public abstract class GObject {
 	}
 
 	public boolean pointerHit(int pointerX, int pointerY) {
-		// TODO: Implement this method.
-		// check if the cursor is in the area of object or not
-		int top = y - height;
+		int top = y;
 		int bottom = y + height;
-		int left = x - (width / 2);
-		int right = x + (width / 2);
+		int left = x;
+		int right = left + width;
+		System.out.println("x: " + x + " y" + y);
+		System.out.println("w: " + width + " h: " + height);
+		System.out.println("t: " + top+ " b: " + bottom + " l: " + left + " r: " + right);
 		if(pointerX >= left && pointerX <= right) {
-			return pointerY >= bottom && pointerY <= top;
+			return pointerY <= bottom && pointerY >= top;
 		}
 		return false;
 	}
