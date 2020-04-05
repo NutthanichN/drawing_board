@@ -72,12 +72,8 @@ public class DrawingBoard extends JPanel {
 	}
 
 	private void paintObjects(Graphics g) {
-//		System.out.println("Paint tryyyy");
 		for (GObject go : gObjects) {
-//			System.out.println("Obj");
-//			System.out.println(go);
 			go.paint(g);
-//			go.paintObject(g);
 		}
 	}
 
@@ -93,14 +89,14 @@ public class DrawingBoard extends JPanel {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// TODO: Implement this method.
-//			for(GObject go: gObjects) {
-//				if(go.pointerHit(e.getX(), e.getY())) {
-//					go.selected();
-//					System.out.println(e.getX() + " " + e.getY());
-//				}
-//			}
-			System.out.println(e.getX() + " " + e.getY());
+//			System.out.println(e.getX() + " " + e.getY());
+			for(GObject go: gObjects) {
+				if(go.pointerHit(e.getX(), e.getY())) {
+					System.out.println(1);
+					go.selected();
+					repaint();
+				}
+			}
 		}
 
 		@Override

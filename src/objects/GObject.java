@@ -27,9 +27,6 @@ public abstract class GObject {
 		int bottom = y + height;
 		int left = x;
 		int right = left + width;
-		System.out.println("x: " + x + " y" + y);
-		System.out.println("w: " + width + " h: " + height);
-		System.out.println("t: " + top+ " b: " + bottom + " l: " + left + " r: " + right);
 		if(pointerX >= left && pointerX <= right) {
 			return pointerY <= bottom && pointerY >= top;
 		}
@@ -37,7 +34,6 @@ public abstract class GObject {
 	}
 	
 	public void selected() {
-		// TODO: Implement this method.
 		this.selected = true;
 	}
 	
