@@ -45,8 +45,11 @@ public abstract class GObject {
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
 		// change obj position using dx, dy
-		this.x += dX;
-		this.y += dY;
+		if(selected) {
+			this.x += dX;
+			this.y += dY;
+		}
+
 	}
 
 	public final void paint(Graphics g) {
