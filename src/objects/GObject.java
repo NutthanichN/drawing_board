@@ -40,12 +40,11 @@ public abstract class GObject {
 	}
 	
 	public void deselected() {
-		// TODO: Implement this method.
 		this.selected = false;
 	}
 	
 	public void move(int dX, int dY) {
-		// TODO: Implement this method.
+		// TODO: Fix.
 		// change obj position using dx, dy
 		// dX = destination X?
 		int deltaX = dX - x;

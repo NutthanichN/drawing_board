@@ -21,42 +21,41 @@ public class CompositeGObject extends GObject {
 	}
 
 	public void add(GObject gObject) {
-		// TODO: Implement this method.
-		// add child
 		gObjects.add(gObject);
+		System.out.println("Add child");
+		for(GObject go: gObjects) {
+			if(selected) {
+				go.selected();
+			}
+			System.out.println(go);
+		}
+		System.out.println("*--------------------------*");
 	}
 
 	public void remove(GObject gObject) {
-		// TODO: Implement this method.
-		// remove child
 		gObjects.remove(gObject);
 	}
 
 	@Override
 	public void move(int dX, int dY) {
-		// TODO: Implement this method.
-//		int deltaX = dX - x;
-//		int deltaY = dY - y;
-////		System.out.println(deltaX + " " + deltaY);
-//		if(selected) {
-//			this.x += deltaX;
-//			this.y += deltaY;
-//		}
+		// TODO: Fix.
 		super.move(dX, dY);
 		for(GObject go: gObjects) {
 			go.move(dX, dY);
+			System.out.println("Move " + go);
+			System.out.println(go.x + " " + go.y);
 		}
 	}
 	
 	public void recalculateRegion() {
-		// TODO: Implement this method.
+		// TODO: Fix.
 		// region expand base on all of children
 		int minX = 9999;
 		int maxX = -9999;
 		int minY = 9999;
 		int maxY = -9999;
-		int maxWidth = -9999;
-		int maxHeight = -9999;
+		int maxWidth = width;
+		int maxHeight = height;
 		for(GObject go: gObjects) {
 			if(go.x < minX) {
 				minX = go.x;
@@ -75,28 +74,35 @@ public class CompositeGObject extends GObject {
 		}
 		this.x = minX;
 		this.y = minY;
+		System.out.println("W0" + " " + width+ " "+ "H0" + " " + height);
+
 		this.width = (maxX + maxWidth) - minX;
 		this.height = (maxY + maxHeight) - minY;
+//		if(((maxX + maxWidth) - minX) > width) {
+//			this.width = (maxX + maxWidth) - minX;
+//		}
+//		if(((maxY + maxHeight) - minY) > height) {
+//			this.height = (maxY + maxHeight) - minY;
+//		}
+
+		System.out.println("min" + " " +  x + " "+ y);
+		System.out.println("max" + " " +  (x + width) + " "+ (y + height));
+		System.out.println("W" + " " + width+ " "+ "H" + " " + height);
 	}
 
 	@Override
 	public void paintObject(Graphics g) {
-		// TODO: Implement this method.
 		// call paintObject of all children
 		for(GObject go: gObjects) {
 			go.paintObject(g);
 		}
-//		recalculateRegion();
-//		paintRegion(g);
 	}
 
 	@Override
 	public void paintLabel(Graphics g) {
-		// TODO: Implement this method.
-		// call paintLabel of all children
-		for(GObject go: gObjects) {
-			go.paintLabel(g);
-		}
+		int left = x;
+		int bottom = y + height + 20;
+		g.drawString("Group", left, bottom);
 	}
 	
 }

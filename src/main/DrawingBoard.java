@@ -31,7 +31,7 @@ public class DrawingBoard extends JPanel {
 	}
 	
 	public void groupAll() {
-		// TODO: Implement this method.
+		// TODO: Fix.
 		// create CompositeGObject then pass GObj as its child
 		// multi layer CompositeGObject
 		System.out.println("Group All");
@@ -88,9 +88,8 @@ public class DrawingBoard extends JPanel {
 
 	class MAdapter extends MouseAdapter {
 
-		// TODO: You need some variables here
-		int x;
-		int y;
+		int oldX;
+		int oldY;
 		
 		private void deselectAll() {
 			for(GObject go: gObjects) {
@@ -100,12 +99,12 @@ public class DrawingBoard extends JPanel {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-//			System.out.println(e.getX() + " " + e.getY());
-			this.x = e.getX();
-			this.y = e.getY();
+			System.out.println("Press: "+ e.getX() + " " + e.getY());
+			this.oldX = e.getX();
+			this.oldY = e.getY();
 			deselectAll();
 			for(GObject go: gObjects) {
-				if(go.pointerHit(x, y)) {
+				if(go.pointerHit(oldX, oldY)) {
 					target = go;
 				}
 			}
@@ -115,17 +114,20 @@ public class DrawingBoard extends JPanel {
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			// TODO: Fix bug.
-			System.out.println(x + " " + y);
-			int dX = e.getX();
-			int dY = e.getY();
+			// TODO: Fix bug (obj move to pointer).
+			System.out.println(oldX + " " + oldY);
+			int currentX = e.getX();
+			int currentY = e.getY();
 //			System.out.println(e.getX()+ " " + e.getY());
 //			System.out.println("dX: " + dX + " dY: " + dY);
-			target.move(dX, dY);
+			target.move(currentX, currentY);
+			repaint();
+			oldX = currentX;
+			oldY = currentY;
 //			for(GObject go: gObjects) {
 //				go.move(dX, dY);
 //			}
-			repaint();
+
 		}
 	}
 	
