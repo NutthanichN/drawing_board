@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 
 public abstract class GObject {
 
+	// this is node!!!
+
 	protected boolean selected;
 	
 	protected int x;

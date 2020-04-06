@@ -34,6 +34,17 @@ public class DrawingBoard extends JPanel {
 		// TODO: Implement this method.
 		// create CompositeGObject then pass GObj as its child
 		// multi layer CompositeGObject
+		System.out.println("Group All");
+		CompositeGObject comGo = new CompositeGObject();
+		for(GObject go: gObjects) {
+			comGo.add(go);
+		}
+//		gObjects = new ArrayList<GObject>();
+		gObjects.add(comGo);
+		repaint();
+		for(GObject go: gObjects) {
+			System.out.println(go);
+		}
 	}
 
 	public void deleteSelected() {
