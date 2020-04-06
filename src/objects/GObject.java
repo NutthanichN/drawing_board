@@ -50,7 +50,7 @@ public abstract class GObject {
 		// dX = destination X?
 		int deltaX = dX - x;
 		int deltaY = dY - y;
-		System.out.println(deltaX + " " + deltaY);
+//		System.out.println(deltaX + " " + deltaY);
 		if(selected) {
 			this.x += deltaX;
 			this.y += deltaY;

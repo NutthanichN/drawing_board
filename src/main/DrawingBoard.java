@@ -39,12 +39,10 @@ public class DrawingBoard extends JPanel {
 		for(GObject go: gObjects) {
 			comGo.add(go);
 		}
-//		gObjects = new ArrayList<GObject>();
+		gObjects = new ArrayList<GObject>();
+		comGo.recalculateRegion();
 		gObjects.add(comGo);
 		repaint();
-		for(GObject go: gObjects) {
-			System.out.println(go);
-		}
 	}
 
 	public void deleteSelected() {
@@ -122,7 +120,7 @@ public class DrawingBoard extends JPanel {
 			int dX = e.getX();
 			int dY = e.getY();
 //			System.out.println(e.getX()+ " " + e.getY());
-			System.out.println("dX: " + dX + " dY: " + dY);
+//			System.out.println("dX: " + dX + " dY: " + dY);
 			target.move(dX, dY);
 //			for(GObject go: gObjects) {
 //				go.move(dX, dY);

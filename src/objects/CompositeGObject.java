@@ -35,6 +35,14 @@ public class CompositeGObject extends GObject {
 	@Override
 	public void move(int dX, int dY) {
 		// TODO: Implement this method.
+//		int deltaX = dX - x;
+//		int deltaY = dY - y;
+////		System.out.println(deltaX + " " + deltaY);
+//		if(selected) {
+//			this.x += deltaX;
+//			this.y += deltaY;
+//		}
+		super.move(dX, dY);
 		for(GObject go: gObjects) {
 			go.move(dX, dY);
 		}
@@ -78,6 +86,8 @@ public class CompositeGObject extends GObject {
 		for(GObject go: gObjects) {
 			go.paintObject(g);
 		}
+//		recalculateRegion();
+//		paintRegion(g);
 	}
 
 	@Override
