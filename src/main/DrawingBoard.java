@@ -11,7 +11,8 @@ import objects.*;
 
 public class DrawingBoard extends JPanel {
 
-	private MouseAdapter mouseAdapter; 
+	private MouseAdapter mouseAdapter;
+	// groupAll --> left one object
 	private List<GObject> gObjects;
 	private GObject target;
 	
@@ -32,6 +33,7 @@ public class DrawingBoard extends JPanel {
 	
 	public void groupAll() {
 		// TODO: Fix.
+		// ขยับตาม target
 		// create CompositeGObject then pass GObj as its child
 		// multi layer CompositeGObject
 		System.out.println("Group All");
@@ -42,7 +44,7 @@ public class DrawingBoard extends JPanel {
 		gObjects = new ArrayList<GObject>();
 		comGo.recalculateRegion();
 		gObjects.add(comGo);
-		repaint();
+		repaint();  // call paint
 	}
 
 	public void deleteSelected() {
@@ -88,27 +90,32 @@ public class DrawingBoard extends JPanel {
 
 	class MAdapter extends MouseAdapter {
 
+		// last x, y
 		int oldX;
 		int oldY;
 		
 		private void deselectAll() {
-			for(GObject go: gObjects) {
-				go.deselected();
-			}
+			// no target
+//			for(GObject go: gObjects) {
+//				go.deselected();
+//			}
 		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
+			// select target
+			// if it's hit = set target
+			// else deselectAll
 			System.out.println("Press: "+ e.getX() + " " + e.getY());
-			this.oldX = e.getX();
-			this.oldY = e.getY();
+			int currentX = e.getX();
+			int currentY = e.getY();
 			deselectAll();
 			for(GObject go: gObjects) {
 				if(go.pointerHit(oldX, oldY)) {
+					go.selected();
 					target = go;
 				}
 			}
-			target.selected();
 			repaint();
 		}
 
@@ -118,8 +125,10 @@ public class DrawingBoard extends JPanel {
 			System.out.println(oldX + " " + oldY);
 			int currentX = e.getX();
 			int currentY = e.getY();
+			// dX = deltaX
 //			System.out.println(e.getX()+ " " + e.getY());
 //			System.out.println("dX: " + dX + " dY: " + dY);
+			// check click
 			target.move(currentX, currentY);
 			repaint();
 			oldX = currentX;

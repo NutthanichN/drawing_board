@@ -12,6 +12,7 @@ public class CompositeGObject extends GObject {
 	// a group of objects
 	// CompositeGObject = parent
 	// GObject = child
+	// not have to be true
 
 	private List<GObject> gObjects;
 
@@ -50,6 +51,7 @@ public class CompositeGObject extends GObject {
 	public void recalculateRegion() {
 		// TODO: Fix.
 		// region expand base on all of children
+		// left-top most obj , right-bottun most obj
 		int minX = 9999;
 		int maxX = -9999;
 		int minY = 9999;

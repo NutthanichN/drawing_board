@@ -36,6 +36,7 @@ public abstract class GObject {
 	}
 	
 	public void selected() {
+		// about paint region only
 		this.selected = true;
 	}
 	
@@ -46,7 +47,7 @@ public abstract class GObject {
 	public void move(int dX, int dY) {
 		// TODO: Fix.
 		// change obj position using dx, dy
-		// dX = destination X?
+		// dX = delta
 		int deltaX = dX - x;
 		int deltaY = dY - y;
 //		System.out.println(deltaX + " " + deltaY);
