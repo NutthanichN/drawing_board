@@ -45,17 +45,9 @@ public abstract class GObject {
 	}
 	
 	public void move(int dX, int dY) {
-		// TODO: Fix.
-		// change obj position using dx, dy
-		// dX = delta
-		int deltaX = dX - x;
-		int deltaY = dY - y;
-//		System.out.println(deltaX + " " + deltaY);
-		if(selected) {
-			this.x += deltaX;
-			this.y += deltaY;
-		}
-
+		// change obj position using dx, dy (delta X, delta Y)
+		x += dX;
+		y += dY;
 	}
 
 	public final void paint(Graphics g) {
