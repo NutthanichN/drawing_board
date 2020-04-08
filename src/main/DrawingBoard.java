@@ -31,8 +31,6 @@ public class DrawingBoard extends JPanel {
 	}
 	
 	public void groupAll() {
-		// multi layer CompositeGObject
-		System.out.println("Group All");
 		CompositeGObject comGo = new CompositeGObject();
 		for(GObject go: gObjects) {
 			comGo.add(go);
@@ -112,7 +110,6 @@ public class DrawingBoard extends JPanel {
 			}
 			oldX = currentX;
 			oldY = currentY;
-			System.out.println(target);
 			repaint();
 		}
 
@@ -122,9 +119,6 @@ public class DrawingBoard extends JPanel {
 			int currentY = e.getY();
 			int dX = currentX - oldX;
 			int dY = currentY - oldY;
-//			System.out.println("drag: " + e.getX()+ " " + e.getY());
-//			System.out.println("dX: " + dX + " dY: " + dY);
-			// check click
 			if(target != null) {
 				target.move(dX, dY);
 				repaint();
