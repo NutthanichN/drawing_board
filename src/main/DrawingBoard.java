@@ -12,7 +12,6 @@ import objects.*;
 public class DrawingBoard extends JPanel {
 
 	private MouseAdapter mouseAdapter;
-	// groupAll --> left one object
 	private List<GObject> gObjects;
 	private GObject target;
 	
@@ -32,9 +31,6 @@ public class DrawingBoard extends JPanel {
 	}
 	
 	public void groupAll() {
-		// TODO: Fix.
-		// ขยับตาม target
-		// create CompositeGObject then pass GObj as its child
 		// multi layer CompositeGObject
 		System.out.println("Group All");
 		CompositeGObject comGo = new CompositeGObject();
@@ -90,53 +86,51 @@ public class DrawingBoard extends JPanel {
 
 	class MAdapter extends MouseAdapter {
 
-		// last x, y
 		int oldX;
 		int oldY;
 		
 		private void deselectAll() {
-			// no target
-//			for(GObject go: gObjects) {
-//				go.deselected();
-//			}
+			if(target != null) {
+				target.deselected();
+				target = null;
+			}
+			repaint();
 		}
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// select target
-			// if it's hit = set target
-			// else deselectAll
-			System.out.println("Press: "+ e.getX() + " " + e.getY());
+			System.out.println("Pressss");
 			int currentX = e.getX();
 			int currentY = e.getY();
+			System.out.println("Press: "+ e.getX() + " " + e.getY());
 			deselectAll();
 			for(GObject go: gObjects) {
-				if(go.pointerHit(oldX, oldY)) {
+				if(go.pointerHit(currentX, currentY)) {
 					go.selected();
 					target = go;
 				}
 			}
+			oldX = currentX;
+			oldY = currentY;
+			System.out.println(target);
 			repaint();
 		}
 
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			// TODO: Fix bug (obj move to pointer).
-			System.out.println(oldX + " " + oldY);
 			int currentX = e.getX();
 			int currentY = e.getY();
-			// dX = deltaX
-//			System.out.println(e.getX()+ " " + e.getY());
+			int dX = currentX - oldX;
+			int dY = currentY - oldY;
+			System.out.println("drag: " + e.getX()+ " " + e.getY());
 //			System.out.println("dX: " + dX + " dY: " + dY);
 			// check click
-			target.move(currentX, currentY);
-			repaint();
-			oldX = currentX;
-			oldY = currentY;
-//			for(GObject go: gObjects) {
-//				go.move(dX, dY);
-//			}
-
+			if(target != null) {
+				target.move(dX, dY);
+				repaint();
+				oldX = currentX;
+				oldY = currentY;
+			}
 		}
 	}
 	

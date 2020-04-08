@@ -9,11 +9,6 @@ import java.util.List;
 
 public class CompositeGObject extends GObject {
 
-	// a group of objects
-	// CompositeGObject = parent
-	// GObject = child
-	// not have to be true
-
 	private List<GObject> gObjects;
 
 	public CompositeGObject() {
@@ -39,12 +34,9 @@ public class CompositeGObject extends GObject {
 
 	@Override
 	public void move(int dX, int dY) {
-		// TODO: Fix.
 		super.move(dX, dY);
 		for(GObject go: gObjects) {
 			go.move(dX, dY);
-			System.out.println("Move " + go);
-			System.out.println(go.x + " " + go.y);
 		}
 		recalculateRegion();
 	}
@@ -92,7 +84,6 @@ public class CompositeGObject extends GObject {
 
 	@Override
 	public void paintObject(Graphics g) {
-		// call paintObject of all children
 		for(GObject go: gObjects) {
 			go.paintObject(g);
 		}

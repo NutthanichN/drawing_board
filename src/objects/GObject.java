@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 
 public abstract class GObject {
 
-	// this is node!!!
-
 	protected boolean selected;
 	
 	protected int x;
@@ -36,7 +34,6 @@ public abstract class GObject {
 	}
 	
 	public void selected() {
-		// about paint region only
 		this.selected = true;
 	}
 	
@@ -45,7 +42,6 @@ public abstract class GObject {
 	}
 	
 	public void move(int dX, int dY) {
-		// change obj position using dx, dy (delta X, delta Y)
 		x += dX;
 		y += dY;
 	}
