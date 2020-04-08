@@ -99,15 +99,15 @@ public class DrawingBoard extends JPanel {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			System.out.println("Pressss");
 			int currentX = e.getX();
 			int currentY = e.getY();
 			System.out.println("Press: "+ e.getX() + " " + e.getY());
 			deselectAll();
-			for(GObject go: gObjects) {
-				if(go.pointerHit(currentX, currentY)) {
-					go.selected();
-					target = go;
+			for(int i = (gObjects.size() - 1); i >= 0; i--) {
+				if(gObjects.get(i).pointerHit(currentX, currentY)) {
+					target = gObjects.get(i);
+					target.selected();
+					break;
 				}
 			}
 			oldX = currentX;
@@ -122,7 +122,7 @@ public class DrawingBoard extends JPanel {
 			int currentY = e.getY();
 			int dX = currentX - oldX;
 			int dY = currentY - oldY;
-			System.out.println("drag: " + e.getX()+ " " + e.getY());
+//			System.out.println("drag: " + e.getX()+ " " + e.getY());
 //			System.out.println("dX: " + dX + " dY: " + dY);
 			// check click
 			if(target != null) {
