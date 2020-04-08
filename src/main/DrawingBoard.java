@@ -99,7 +99,6 @@ public class DrawingBoard extends JPanel {
 		public void mousePressed(MouseEvent e) {
 			int currentX = e.getX();
 			int currentY = e.getY();
-			System.out.println("Press: "+ e.getX() + " " + e.getY());
 			deselectAll();
 			for(int i = (gObjects.size() - 1); i >= 0; i--) {
 				if(gObjects.get(i).pointerHit(currentX, currentY)) {
