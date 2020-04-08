@@ -46,18 +46,16 @@ public class CompositeGObject extends GObject {
 			System.out.println("Move " + go);
 			System.out.println(go.x + " " + go.y);
 		}
+		recalculateRegion();
 	}
 	
 	public void recalculateRegion() {
 		// TODO: Fix.
 		// region expand base on all of children
-		// left-top most obj , right-bottun most obj
-		int minX = 9999;
-		int maxX = -9999;
-		int minY = 9999;
-		int maxY = -9999;
-		int maxWidth = width;
-		int maxHeight = height;
+		// left-top most obj , right-bottom most obj
+		int minX, minY, maxX, maxY, maxHeight, maxWidth;
+		maxX = maxY = maxHeight = maxWidth = -9999;
+		minX = minY = 9999;
 		for(GObject go: gObjects) {
 			if(go.x < minX) {
 				minX = go.x;
@@ -76,7 +74,7 @@ public class CompositeGObject extends GObject {
 		}
 		this.x = minX;
 		this.y = minY;
-		System.out.println("W0" + " " + width+ " "+ "H0" + " " + height);
+//		System.out.println("W0" + " " + width+ " "+ "H0" + " " + height);
 
 		this.width = (maxX + maxWidth) - minX;
 		this.height = (maxY + maxHeight) - minY;
